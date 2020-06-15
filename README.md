@@ -27,7 +27,7 @@ For example:
 ### Difference with the original implementation
 The results are slightly different from the original implementation:
 
-| Checkpoint | Network | Original Implementation AEPE KITTI2012 / KITTI2015 | This Implementation AEPE KITTI2012 / KITTI2015 |
+| Checkpoint | Network | <p>Original Implementation AEPE <br> KITTI2012 / KITTI2015</p> | <p>This Implementation AEPE <br> KITTI2012 / KITTI2015</p> |
 | --- | --- | --- | ---|
 | 771Sep25 | MaskFlownet_S | 4.12 / 11.52 | 4.18 / 11.83 |
 | dbbSep30 | MaskFlownet_S | 1.27 / 1.92 | 1.28 / 1.93 |
