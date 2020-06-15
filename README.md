@@ -25,7 +25,7 @@ For example:
 * ``` python predict.py MaskFlownet_S.yaml --c 771Sep25-0735_500000.pth --dataset_cfg kitti.yaml -b 4 ```
 * ``` python predict.py MaskFlownet_S.yaml --c dbbSep30-1206_1000000.pth --dataset_cfg kitti.yaml -b 4 ```
 
-### Difference with the original implementation
+### Differences with the original implementation
 The results are slightly different from the original implementation:
 
 | Checkpoint | Network | <p>Original Implementation AEPE <br> KITTI2012 / KITTI2015</p> | <p>This Implementation AEPE <br> KITTI2012 / KITTI2015</p> |
@@ -42,7 +42,7 @@ Original implementation:
 This implementation:
 ![this_visualization](./data/this-implementation.png)
 
-### Acknowledgement
+### Acknowledgment
 Original MXNet implementation: [here](https://github.com/microsoft/MaskFlownet)
 
 [correlation_package](model/correlation_package) was taken from [flownet2](https://github.com/NVIDIA/flownet2-pytorch/tree/master/networks/correlation_package)
