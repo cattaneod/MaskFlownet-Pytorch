@@ -43,4 +43,6 @@ This implementation:
 ![this_visualization](./data/this-implementation.png)
 
 ### Acknowledgement
+Original MXNet implementation: [here](https://github.com/microsoft/MaskFlownet)
+
 [correlation_package](model/correlation_package) was taken from [flownet2](https://github.com/NVIDIA/flownet2-pytorch/tree/master/networks/correlation_package)
