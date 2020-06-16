@@ -30,10 +30,11 @@ The results are slightly different from the original implementation:
 
 | Checkpoint | Network | <p>Original Implementation AEPE <br> KITTI2012 / KITTI2015</p> | <p>This Implementation AEPE <br> KITTI2012 / KITTI2015</p> |
 | --- | --- | --- | ---|
+| A  <td colspan=3>B <td colspan=1>C|
 | 771Sep25 | MaskFlownet_S | 4.12 / 11.52 | 4.18 / 11.83 |
 | dbbSep30 | MaskFlownet_S | 1.27 / 1.92 | 1.28 / 1.93 |
-| 5adNov03 | MaskFlownet   | 1.16 / 1.66 | 1.21 / 1.74 |
-| 8caNov12 | MaskFlownet   | 0.82 / 1.38 | 0.83 / 1.40 |
+| 5adNov03 | MaskFlownet   | 1.16 / 1.66 | 1.18 / 1.68 |
+| 8caNov12 | MaskFlownet   | 0.82 / 1.38 | 0.82 / 1.38 |
  
 #### Example
 Original implementation:

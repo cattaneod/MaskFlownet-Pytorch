@@ -231,9 +231,9 @@ class MaskFlownet_S(nn.Module):
 
         vgrid = vgrid.permute(0,2,3,1)
         # vgrid = vgrid.permute(0,2,3,1).clamp(-1.1, 1.1)
-        output = nn.functional.grid_sample(x, vgrid)
+        output = nn.functional.grid_sample(x, vgrid, align_corners=True)
         mask = torch.autograd.Variable(torch.ones(x.size())).cuda()
-        mask = nn.functional.grid_sample(mask, vgrid)
+        mask = nn.functional.grid_sample(mask, vgrid, align_corners=True)
 
         # if W==128:
         # np.save('mask.npy', mask.cpu().data.numpy())
@@ -516,9 +516,9 @@ class MaskFlownet(nn.Module):
 
         # vgrid = vgrid.permute(0,2,3,1)
         vgrid = vgrid.permute(0,2,3,1).clamp(-1.1, 1.1)
-        output = nn.functional.grid_sample(x, vgrid)
+        output = nn.functional.grid_sample(x, vgrid, align_corners=True)
         mask = torch.autograd.Variable(torch.ones(x.size())).cuda()
-        mask = nn.functional.grid_sample(mask, vgrid)
+        mask = nn.functional.grid_sample(mask, vgrid, align_corners=True)
 
         # if W==128:
         # np.save('mask.npy', mask.cpu().data.numpy())
