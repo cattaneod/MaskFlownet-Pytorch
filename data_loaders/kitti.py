@@ -103,9 +103,3 @@ class KITTI(Dataset):
         img1 = torch.tensor(img1/255.).float()
 
         return img0, img1, flow, occ, im0_path
-
-
-if __name__ == '__main__':
-    dataset = KITTI('/media/RAIDONE/DATASETS/KITTI/flow/', resize=(1152, 512))
-    it = dataset.__getitem__(0)
-    print(it)

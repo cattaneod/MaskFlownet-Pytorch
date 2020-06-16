@@ -24,6 +24,8 @@ parser.add_argument('-c', '--checkpoint', type=str, default=None,
                     help='model checkpoint to load')
 parser.add_argument('-b', '--batch', type=int, default=1,
                     help='Batch Size')
+parser.add_argument('-f', '--root_folder', type=str, default=None,
+                    help='Root folder of KITTI')
 args = parser.parse_args()
 num_workers = 6
 
@@ -40,7 +42,7 @@ net.load_state_dict(checkpoint)
 net = net.to(device)
 
 resize = (1224, 370)
-dataset = KITTI('/media/RAIDONE/DATASETS/KITTI/flow/', split='train', editions='2012', resize=resize, parts='valid')
+dataset = KITTI(args.root_folder, split='train', editions='2012', resize=resize, parts='valid')
 data_loader = torch.utils.data.DataLoader(dataset=dataset,
                                           shuffle=False,
                                           batch_size=args.batch,
@@ -79,7 +81,7 @@ for idx, sample in enumerate(data_loader):
 
 print("EPE KITTI 2012: ", torch.cat(epe).mean())
 
-dataset = KITTI('/media/RAIDONE/DATASETS/KITTI/flow/', split='train', editions='2015', resize=resize, parts='valid')
+dataset = KITTI(args.root_folder, split='train', editions='2015', resize=resize, parts='valid')
 data_loader = torch.utils.data.DataLoader(dataset=dataset,
                                           shuffle=False,
                                           batch_size=args.batch,

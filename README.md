@@ -16,14 +16,14 @@ python setup.py install
 Right now, I implemented the inference script only for KITTI 2012/2015.
 
 ```
-python predict.py CONFIG -c CHECKPOINT --dataset_cfg DATASET [-b BATCH_SIZE]
+python predict.py CONFIG -c CHECKPOINT --dataset_cfg DATASET -f ROOT_FOLDER [-b BATCH_SIZE]
 ```
 
 For example:
-* ``` python predict.py MaskFlownet.yaml --c 5adNov03-0005_1000000.pth --dataset_cfg kitti.yaml -b 4```
-* ``` python predict.py MaskFlownet.yaml --c 8caNov12-1532_300000.pth --dataset_cfg kitti.yaml -b 4```
-* ``` python predict.py MaskFlownet_S.yaml --c 771Sep25-0735_500000.pth --dataset_cfg kitti.yaml -b 4 ```
-* ``` python predict.py MaskFlownet_S.yaml --c dbbSep30-1206_1000000.pth --dataset_cfg kitti.yaml -b 4 ```
+* ``` python predict.py MaskFlownet.yaml --c 5adNov03-0005_1000000.pth --dataset_cfg kitti.yaml -f ./KITTI -b 4```
+* ``` python predict.py MaskFlownet.yaml --c 8caNov12-1532_300000.pth --dataset_cfg kitti.yaml -f ./KITTI -b 4```
+* ``` python predict.py MaskFlownet_S.yaml --c 771Sep25-0735_500000.pth --dataset_cfg kitti.yaml -f ./KITTI -b 4 ```
+* ``` python predict.py MaskFlownet_S.yaml --c dbbSep30-1206_1000000.pth --dataset_cfg kitti.yaml -f ./KITTI -b 4 ```
 
 ### Differences with the original implementation
 The results are slightly different from the original implementation:
