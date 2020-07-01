@@ -49,7 +49,7 @@ class CorrelationFunction(Function):
             correlation_cuda.backward(input1, input2, rbot1, rbot2, grad_output, grad_input1, grad_input2,
                                       ctx.pad_size, ctx.kernel_size, ctx.max_displacement, ctx.stride1, ctx.stride2, ctx.corr_multiply)
 
-        return grad_input1, grad_input2
+        return grad_input1, grad_input2, None, None, None, None, None, None
 
 
 class Correlation(Module):
