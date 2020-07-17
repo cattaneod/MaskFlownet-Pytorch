@@ -6,7 +6,7 @@ import numpy as np
 from torchvision import ops
 # ops.DeformConv2d()
 
-from model.correlation_package.correlation import Correlation
+from .correlation_package.correlation import Correlation
 
 
 def conv(in_planes, out_planes, kernel_size=3, stride=1, padding=1, dilation=1, activation=True):
@@ -213,7 +213,7 @@ class MaskFlownet_S(nn.Module):
         flo: [B, 2, H, W] flow
         """
         B, C, H, W = x.size()
-        # mesh grid 
+        # mesh grid
         xx = torch.arange(0, W).view(1,-1).repeat(H,1)
         yy = torch.arange(0, H).view(-1,1).repeat(1,W)
         xx = xx.view(1,1,H,W).repeat(B,1,1,1)
@@ -225,7 +225,7 @@ class MaskFlownet_S(nn.Module):
         # vgrid = Variable(grid) + flo
         vgrid = Variable(grid) + torch.flip(flo, [1])
 
-        # scale grid to [-1,1] 
+        # scale grid to [-1,1]
         vgrid[:,0,:,:] = 2.0*vgrid[:,0,:,:].clone() / max(W-1,1)-1.0
         vgrid[:,1,:,:] = 2.0*vgrid[:,1,:,:].clone() / max(H-1,1)-1.0
 
