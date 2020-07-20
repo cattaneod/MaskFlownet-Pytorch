@@ -220,8 +220,8 @@ class MaskFlownet_S(nn.Module):
         yy = yy.view(1,1,H,W).repeat(B,1,1,1)
         grid = torch.cat((xx,yy),1).float()
 
-        if x.is_cuda:
-            grid = grid.cuda()
+        device = x.device
+        grid = grid.to(device)
         # vgrid = Variable(grid) + flo
         vgrid = Variable(grid) + torch.flip(flo, [1])
 
@@ -232,7 +232,7 @@ class MaskFlownet_S(nn.Module):
         vgrid = vgrid.permute(0,2,3,1)
         # vgrid = vgrid.permute(0,2,3,1).clamp(-1.1, 1.1)
         output = nn.functional.grid_sample(x, vgrid, align_corners=True)
-        mask = torch.autograd.Variable(torch.ones(x.size())).cuda()
+        mask = torch.autograd.Variable(torch.ones(x.size())).to(device)
         mask = nn.functional.grid_sample(mask, vgrid, align_corners=True)
 
         # if W==128:
