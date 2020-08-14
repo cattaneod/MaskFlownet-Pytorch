@@ -6,7 +6,7 @@ import numpy as np
 from torchvision import ops
 # ops.DeformConv2d()
 
-from model.correlation_package.correlation import Correlation
+from .correlation_package.correlation import Correlation
 
 
 def conv(in_planes, out_planes, kernel_size=3, stride=1, padding=1, dilation=1, activation=True):
@@ -213,26 +213,26 @@ class MaskFlownet_S(nn.Module):
         flo: [B, 2, H, W] flow
         """
         B, C, H, W = x.size()
-        # mesh grid 
+        # mesh grid
         xx = torch.arange(0, W).view(1,-1).repeat(H,1)
         yy = torch.arange(0, H).view(-1,1).repeat(1,W)
         xx = xx.view(1,1,H,W).repeat(B,1,1,1)
         yy = yy.view(1,1,H,W).repeat(B,1,1,1)
         grid = torch.cat((xx,yy),1).float()
 
-        if x.is_cuda:
-            grid = grid.cuda()
+        device = x.device
+        grid = grid.to(device)
         # vgrid = Variable(grid) + flo
         vgrid = Variable(grid) + torch.flip(flo, [1])
 
-        # scale grid to [-1,1] 
+        # scale grid to [-1,1]
         vgrid[:,0,:,:] = 2.0*vgrid[:,0,:,:].clone() / max(W-1,1)-1.0
         vgrid[:,1,:,:] = 2.0*vgrid[:,1,:,:].clone() / max(H-1,1)-1.0
 
         vgrid = vgrid.permute(0,2,3,1)
         # vgrid = vgrid.permute(0,2,3,1).clamp(-1.1, 1.1)
         output = nn.functional.grid_sample(x, vgrid, align_corners=True)
-        mask = torch.autograd.Variable(torch.ones(x.size())).cuda()
+        mask = torch.autograd.Variable(torch.ones(x.size())).to(device)
         mask = nn.functional.grid_sample(mask, vgrid, align_corners=True)
 
         # if W==128:
