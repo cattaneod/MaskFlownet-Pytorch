@@ -68,7 +68,10 @@ for idx, sample in enumerate(data_loader):
         im0 = im0.permute(0, 3, 1, 2)
         im1 = im1.permute(0, 3, 1, 2)
         im0, im1, _ = centralize(im0, im1)
+        
+        # The original MxNet implementation of MaskFlownet predict the flipped flow
         label = label.permute(0, 3, 1, 2).to(device).flip(1)
+        
         mask = mask.permute(0, 3, 1, 2).to(device)
 
         shape = im0.shape
@@ -92,6 +95,9 @@ for idx, sample in enumerate(data_loader):
         up_occ_mask = F.interpolate(up_occ_mask, size=[shape[2], shape[3]], mode='bilinear')
 
     epe.append(EpeLossWithMask()(up_flow, label, mask))
+    
+    # Flip the flow to get the final prediction
+    final_flow = up_flow.flip(1)
 
 
 print("AEPE: "+config.value['dataset'], torch.cat(epe).mean())
