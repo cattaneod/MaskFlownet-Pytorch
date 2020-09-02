@@ -94,7 +94,7 @@ for idx, sample in enumerate(data_loader):
                   torch.tensor([shape[d] / up_flow.shape[d] for d in (2, 3)], device=device).view(1, 2, 1, 1)
         up_occ_mask = F.interpolate(up_occ_mask, size=[shape[2], shape[3]], mode='bilinear')
 
-    epe.append(EpeLossWithMask()(up_flow, label, mask))
+    epe.append(EpeLossWithMask()(up_flow, label, mask).detach())
     
     # Flip the flow to get the final prediction
     final_flow = up_flow.flip(1)
