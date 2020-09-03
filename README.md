@@ -61,6 +61,17 @@ FlyingChairs This implementation:
 
 ![this_visualization](./data/this-chairs.png)
 
+### Notes
+
+If you use my implementation for training, it might happen that you encounter this error:
+```
+CUDA error: an illegal memory access was encountered
+```
+
+This is due to a bug in the torchvision implementation of deformable convolutions. (still present in version 0.7.0)
+
+To solve it, you need to use the nightly version of torchvision.
+
 ### Acknowledgment
 Original MXNet implementation: [here](https://github.com/microsoft/MaskFlownet)
 
